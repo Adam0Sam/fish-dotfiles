@@ -42,13 +42,6 @@ function find_latest_folder --argument folder_name
     end
 end
 
-function test1
-    for dir in */
-        echo $dir
-    end
-end
-
-
 function copy_to_all_dirs --argument target_dir target_folder
     if not test -d "$target_dir"
         echo "Error: The latest directory '$target_dir' does not exist."

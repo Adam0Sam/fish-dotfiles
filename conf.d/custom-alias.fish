@@ -5,5 +5,3 @@ abbr -a -g yarnprivate "yarn config set -H npmRegistryServer https://npm.dev.wix
 abbr -a -g npmpublic "npm config set registry https://registry.npmjs.org/ && npm config get registry"
 abbr -a -g npmprivate "npm config set registry https://npm.dev.wixpress.com && npm config get registry"
 abbr -a -g nodesync "nvm use && corepack enable"
-abbr -a -g pblog "set ORIGINAL_DIR $(pwd) && cd ~/repos/wix-blog/blog-client && nvm use && corepack enable && yarn && cd packages/communities-blog-client-common && yarn build && cd $ORIGINAL_DIR"
-abbr -a -g obsync "set ORIGINAL_DIR $(pwd) && cd ~/Documents/Obsidian && latest_sync .obsidian && cd $ORIGINAL_DIR"
