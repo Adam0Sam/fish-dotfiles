@@ -10,31 +10,30 @@ function killport
     lsof -i :$argv | awk 'NR==2 {system("kill -9 " $2)}'
 end
 
-function find_latest_folder --argument folder_name
+function get_latest_folder --argument folder_name
+
     if not test -n "$folder_name"
         echo "Please provide a folder name as an argument."
         return 1
     end
 
     set latest_time 0
-    set latest_folder ""
+    set latest_dir ""
 
     for dir in */ 
-        set target_dir "$dir/$folder_name"
+        set target_folder "$dir/$folder_name"
         
-        if test -d $target_dir
-            set mod_time (stat -f "%m" $target_dir)
-
+        if test -d $target_folder
+            set mod_time (find $target_folder -type f -exec stat -f "%m" {} \; | sort -n -r | head -1)
             if test "$mod_time" -gt "$latest_time"
                 set latest_time $mod_time
-                set latest_folder $dir
+                set latest_dir $dir
             end
         end
     end
 
-    # Output the result
-    if test -n "$latest_folder"
-        echo $latest_folder
+    if test -n "$latest_dir"
+        echo $latest_dir
         return 0
     else
         echo "No '$folder_name' folder found in the current directory."
@@ -54,7 +53,6 @@ function copy_to_all_dirs --argument target_dir target_folder
     end
 
     for dir in */ 
-        echo "Checking $dir ..."
         if test "$dir" = "$target_dir"
             echo "Skipping $dir ..."
             continue
@@ -64,19 +62,12 @@ function copy_to_all_dirs --argument target_dir target_folder
             echo "Error: The folder $target_folder does not exist in $dir."
             return 1
         end
-
-        echo "Copying $target_folder from $target_dir to $dir ..."
         
+        echo "Copying $target_folder from $target_dir to $dir ..."
+        rm -rf "$dir/$target_folder"
         cp -r "$target_dir/$target_folder"* "$dir/$target_folder"
 
         end
     echo "Done."
     return 0   
-end
-
-
-function latest_sync --argument folder_name
-    set latest_dir (find_latest_folder $folder_name)
-    copy_to_all_dirs $latest_dir $folder_name
-    return 0
 end
