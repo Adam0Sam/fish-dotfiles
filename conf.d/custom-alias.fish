@@ -1,7 +1,2 @@
 abbr -a -g npmiw "npm install --workspace"
 abbr -a -g shadadd "npx shadcn-ui@latest add"
-abbr -a -g yarnpublic "yarn config set -H npmRegistryServer https://registry.npmjs.org"
-abbr -a -g yarnprivate "yarn config set -H npmRegistryServer https://npm.dev.wixpress.com"
-abbr -a -g npmpublic "npm config set registry https://registry.npmjs.org/ && npm config get registry"
-abbr -a -g npmprivate "npm config set registry https://npm.dev.wixpress.com && npm config get registry"
-abbr -a -g nodesync "nvm use && corepack enable"

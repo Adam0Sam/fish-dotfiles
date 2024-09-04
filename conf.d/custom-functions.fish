@@ -68,6 +68,6 @@ function copy_to_all_dirs --argument target_dir target_folder
         cp -r "$target_dir/$target_folder"* "$dir/$target_folder"
 
         end
-    echo "Done."
+    echo "Copying Done."
     return 0   
 end
