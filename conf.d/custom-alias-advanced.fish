@@ -43,3 +43,7 @@ function obsync
     echo "Obsync Done."
     cd $ORIGINAL_DIR
 end
+
+function adb
+    /Users/adamsam/Library/Android/sdk/platform-tools/adb $argv
+end
