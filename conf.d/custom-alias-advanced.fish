@@ -47,3 +47,13 @@ end
 function adb
     /Users/adamsam/Library/Android/sdk/platform-tools/adb $argv
 end
+
+function vpy
+    if test -d .venv
+        ./.venv/bin/python $argv
+    else if test -d venv
+        ./venv/bin/python $argv
+    else
+        echo "Neither .venv nor venv directory exists."
+    end
+end
