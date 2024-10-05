@@ -19,6 +19,13 @@ function nodesync
     corepack enable
 end
 
+function vdown
+    set ORIGINAL_DIR (pwd)
+    cd /Users/adamsam/repos/digital-voting-platform/apps/api
+    docker compose down
+    cd $ORIGINAL_DIR
+end
+
 function pblog 
     set ORIGINAL_DIR (pwd)
     cd ~/repos/wix-blog/blog-client
