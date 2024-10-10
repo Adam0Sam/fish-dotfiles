@@ -10,6 +10,27 @@ function killport
     lsof -i :$argv | awk 'NR==2 {system("kill -9 " $2)}'
 end
 
+function file_count
+    if test (count $argv) -eq 0
+        echo "Usage: $argv[0] directory_path"
+        return 1
+    end
+
+    # Check if the provided argument is a valid directory
+    if not test -d $argv[1]
+        echo "Error: $argv[1] is not a valid directory."
+        return 1
+    end
+
+    # Count the number of files in the directory
+    set file_count (find $argv[1] -type f | wc -l)
+
+    # Output the result
+    echo "The directory '$argv[1]' contains $file_count files."
+end
+
+
+
 function get_latest_folder --argument folder_name
 
     if not test -n "$folder_name"

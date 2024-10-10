@@ -26,6 +26,13 @@ function vdown
     cd $ORIGINAL_DIR
 end
 
+function vup
+    set ORIGINAL_DIR (pwd)
+    cd /Users/adamsam/repos/digital-voting-platform/apps/api
+    docker compose up -d db
+    cd $ORIGINAL_DIR
+end
+
 function pblog 
     set ORIGINAL_DIR (pwd)
     cd ~/repos/wix-blog/blog-client
